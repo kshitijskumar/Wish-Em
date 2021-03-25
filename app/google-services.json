@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "69150458339",
+    "project_id": "wish-em",
+    "storage_bucket": "wish-em.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:69150458339:android:2d1f6bc9d69dbeb74960d6",
+        "android_client_info": {
+          "package_name": "com.example.wishem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "69150458339-k8sb3cctf67u2871glji5hsj7qtkto0u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJqS24niJDaez1K1vE6lmRQF5mmZ71_8o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "69150458339-k8sb3cctf67u2871glji5hsj7qtkto0u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

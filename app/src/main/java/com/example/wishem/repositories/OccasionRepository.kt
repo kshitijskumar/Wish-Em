@@ -17,4 +17,6 @@ class OccasionRepository(
                 dao.deleteOccasion(occasion)
         }
 
+        suspend fun getParticularInfo(id: Int) : OccasionEntity? = dao.getOccasion(id)
+
 }

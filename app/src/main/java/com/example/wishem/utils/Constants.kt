@@ -9,4 +9,6 @@ object Constants {
     const val CHANNEL_DESCRIPTION = "This helps people to remember imp dates to wish"
 
     const val WORK_REQUEST_TAG = "Reminder work"
+
+    const val ID_KEY = "id_key"
 }

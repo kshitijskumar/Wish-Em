@@ -8,6 +8,7 @@
             name="date"
             type="String" />
     </data>
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -16,7 +17,8 @@
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:liftOnScroll="true">
+            app:liftOnScroll="true"
+            app:elevation="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -39,37 +41,33 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvTodayEvents"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvDate" />
+
+                <TextView
+                    android:id="@+id/tvAllBigDatesInfo"
+                    style="@style/TextAppearance.MaterialComponents.Headline5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="All Big Days"
+                    android:background="@color/white"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rvTodayEvents"
+                    android:layout_marginTop="10dp"
+                    android:paddingStart="20dp"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.appbar.AppBarLayout>
-
-        <TextView
-            android:id="@+id/tvAllBigDatesInfo"
-            style="@style/TextAppearance.MaterialComponents.Headline5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="All Big Days"
-            app:layout_anchor="@id/appBarLayout"
-            app:layout_anchorGravity="bottom"
-            android:layout_gravity="bottom"
-            android:translationY="10dp"
-            android:layout_marginStart="20dp"
-            android:textStyle="bold"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvAllEvents"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_anchor="@id/tvAllBigDatesInfo"
-            app:layout_anchorGravity="bottom"
-            android:layout_gravity="bottom"
             android:translationY="10dp"
             android:layout_margin="10dp"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
@@ -80,7 +78,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_bottom_one_side_corner"
             android:layout_gravity="bottom"
-            android:padding="10dp">
+            android:padding="10dp"
+            app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAddEvent"

@@ -13,6 +13,7 @@ import com.example.wishem.repositories.OccasionRepository
 import com.example.wishem.utils.Constants.WORK_REQUEST_TAG
 import com.example.wishem.utils.InjectorUtils.providesRepository
 import com.example.wishem.utils.Result
+import com.example.wishem.utils.UtilsFunctions.getTodaysEvents
 import com.example.wishem.workmanager.ReminderWorker
 import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
@@ -28,17 +29,57 @@ class OccasionViewModel(
     val addingResult : LiveData<Result<Nothing>>
         get() = _addingResult
 
+    private val _todaysOccasion = MutableLiveData<Result<List<OccasionEntity>>>()
+    val todaysOccasion : LiveData<Result<List<OccasionEntity>>>
+        get() = _todaysOccasion
+
+    private val _allOccasion = MutableLiveData<Result<List<OccasionEntity>>>()
+    val allOccasion : LiveData<Result<List<OccasionEntity>>>
+        get() = _allOccasion
+
+    private val _particularInfo = MutableLiveData<Result<OccasionEntity>>()
+    val particularInfo : LiveData<Result<OccasionEntity>>
+        get() = _particularInfo
+
+
+    suspend fun updateOccasion() = viewModelScope.launch {
+        _todaysOccasion.value = Result.Loading
+        _allOccasion.value = Result.Loading
+
+        val allEvents = repo.getAllOccasions().sortedWith(compareBy({it.month}, {it.date}))
+
+        val todaysEvents = getTodaysEvents(allEvents)
+
+        _todaysOccasion.value = Result.Success(todaysEvents)
+        _allOccasion.value = Result.Success(allEvents)
+//
+//        _todaysOccasion.value = Result.Idle
+//        _allOccasion.value = Result.Idle
+    }
+
+    fun getParticularInfo(id: Int) = viewModelScope.launch {
+        _particularInfo.value = Result.Loading
+        val info = repo.getParticularInfo(id)
+        if (info != null) {
+            _particularInfo.value = Result.Success(info)
+            _particularInfo.value = Result.Idle
+        }else {
+            _particularInfo.value = Result.Error("Sorry, info not found!")
+            _particularInfo.value = Result.Idle
+        }
+
+    }
 
     fun addOccasion(name: String?, date: String?, month: String?, chipId: Int) = viewModelScope.launch {
         when {
             name.isNullOrEmpty() -> {
-                setError("Please enter a name!")
+                setAddingError("Please enter a name!")
             }
             date.isNullOrEmpty() -> {
-                setError("Please enter the date!")
+                setAddingError("Please enter the date!")
             }
             month.isNullOrEmpty() -> {
-                setError("Please enter the month")
+                setAddingError("Please enter the month")
             }
             else -> {
                 val occasionCode = when(chipId) {
@@ -49,22 +90,27 @@ class OccasionViewModel(
 
                 val occasion = OccasionEntity(name, occasionCode, date.toInt(), month.toInt())
                 repo.addOccasion(occasion)
-                setSuccess()
+                updateOccasion()
+                setAddingSuccess()
             }
         }
     }
 
-    private fun setError(errorMsg: String) {
+    private fun setAddingError(errorMsg: String) {
         _addingResult.value = Result.Error(errorMsg)
         _addingResult.value = Result.Idle
 
     }
-    private fun setSuccess() {
-        _addingResult.value = Result.Success
+    private fun setAddingSuccess() {
+        _addingResult.value = Result.EmptySuccess
         _addingResult.value = Result.Idle
     }
 
     init {
+        viewModelScope.launch {
+            updateOccasion()
+        }
+
         val workRequest = PeriodicWorkRequestBuilder<ReminderWorker>(15, TimeUnit.MINUTES)
                 .addTag(WORK_REQUEST_TAG)
                 .build()

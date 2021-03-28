@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.wishem.R
 import com.example.wishem.databinding.FragmentAddEventBinding
+import com.example.wishem.utils.Constants.ID_KEY
 import com.example.wishem.utils.Result
 import com.example.wishem.utils.UtilsFunctions.showAddSuccessSB
 import com.example.wishem.utils.UtilsFunctions.showErrorSB
@@ -42,6 +43,12 @@ class AddEventFragment : Fragment() {
 
     private fun setupViews() {
 
+        val id = arguments?.getInt(ID_KEY)
+
+        if(id != null) {
+
+        }
+
         //back navigation from toolbar
         binding.toolBar.setNavigationOnClickListener {
             findNavController().navigateUp()
@@ -65,7 +72,7 @@ class AddEventFragment : Fragment() {
         viewModel.addingResult.observe(viewLifecycleOwner) {
             when(it) {
                 is Result.Error -> binding.root.showErrorSB(it.msg)
-                is Result.Success -> {
+                is Result.EmptySuccess -> {
                     binding.root.showAddSuccessSB()
                     findNavController().navigateUp()
                 }

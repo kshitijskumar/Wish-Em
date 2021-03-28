@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="item"
+            type="com.example.wishem.local.OccasionEntity" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -28,7 +34,8 @@
                     android:id="@+id/ivIcon"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    tools:src="@drawable/ic_birthday"/>
+                    tools:src="@drawable/ic_birthday"
+                    event_icon="@{item.iconCode}"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -44,7 +51,8 @@
                         android:layout_marginEnd="8dp"
                         tools:text="Kshitij"
                         style="@style/TextAppearance.MaterialComponents.Headline6"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:text="@{item.name}"/>
 
                     <TextView
                         android:id="@+id/tvOccasion"
@@ -53,7 +61,9 @@
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="8dp"
                         tools:text="Birthday"
-                        style="@style/TextAppearance.MaterialComponents.Body1"/>
+                        style="@style/TextAppearance.MaterialComponents.Body1"
+                        event_name="@{item.iconCode}"
+                        android:textStyle="italic"/>
 
                     <TextView
                         android:id="@+id/tvDate"
@@ -62,7 +72,9 @@
                         android:layout_marginStart="4dp"
                         android:layout_marginEnd="8dp"
                         tools:text="22 / 12"
-                        style="@style/TextAppearance.MaterialComponents.Body2"/>
+                        style="@style/TextAppearance.MaterialComponents.Body2"
+                        occasion_date="@{item.date}"
+                        occasion_month="@{item.month}"/>
 
                 </LinearLayout>
             </LinearLayout>

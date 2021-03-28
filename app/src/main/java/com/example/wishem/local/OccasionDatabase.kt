@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.wishem.utils.Constants.DATABASE_NAME
 
-@Database(entities = [OccasionEntity::class], version = 1)
+@Database(entities = [OccasionEntity::class], version = 1, exportSchema = false)
 abstract class OccasionDatabase : RoomDatabase() {
 
     abstract fun occasionDao() : OccasionDao

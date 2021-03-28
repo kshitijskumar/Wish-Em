@@ -16,9 +16,6 @@ interface OccasionDao {
     @Query("SELECT * FROM occasions")
     suspend fun getAllOccasions() : List<OccasionEntity>
 
-    @Query("SELECT * FROM occasions")
-    suspend fun observablesAllOccasions() : LiveData<List<OccasionEntity>>
-
     @Query("SELECT * FROM occasions WHERE id = :id")
     suspend fun getOccasion(id: Int) : OccasionEntity?
 }

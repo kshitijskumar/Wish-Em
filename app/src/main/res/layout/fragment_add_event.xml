@@ -1,5 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:title="Add New Occasion"
+                    app:navigationIcon="@drawable/ic_back"/>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etNameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Name of the person"
+                app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintVertical_bias="0.3">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textCapSentences"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tvOccasionInfo"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Occasion"
+                app:layout_constraintEnd_toEndOf="@+id/etNameLayout"
+                app:layout_constraintStart_toStartOf="@id/etNameLayout"
+                app:layout_constraintTop_toBottomOf="@id/etNameLayout"
+                android:layout_marginTop="14dp"/>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/cgOccasion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:singleSelection="true"
+                app:selectionRequired="true"
+                app:layout_constraintEnd_toEndOf="@id/tvOccasionInfo"
+                app:layout_constraintStart_toStartOf="@id/tvOccasionInfo"
+                app:layout_constraintTop_toBottomOf="@id/tvOccasionInfo"
+                android:layout_marginTop="12dp">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipBday"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Birthday"
+                    app:chipIcon="@drawable/ic_birthday"
+                    app:chipIconVisible="true"
+                    app:iconStartPadding="8dp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipAnn"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Anniversary"
+                    app:iconStartPadding="8dp"
+                    app:chipIcon="@drawable/ic_anniversary"
+                    app:chipIconVisible="true" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipOther"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Other"
+                    android:checked="true"
+                    app:iconStartPadding="8dp"
+                    app:chipIcon="@drawable/ic_party_other"
+                    app:chipIconVisible="true" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etDateLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:helperText="Date"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                app:layout_constraintStart_toStartOf="@id/cgOccasion"
+                app:layout_constraintTop_toBottomOf="@id/cgOccasion"
+                android:layout_marginTop="10dp">
+
+                <AutoCompleteTextView
+                    android:id="@+id/etDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="none"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etMonthLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:helperText="Month"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                app:layout_constraintStart_toEndOf="@id/etDateLayout"
+                app:layout_constraintBaseline_toBaselineOf="@id/etDateLayout"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="12dp">
+
+                <AutoCompleteTextView
+                    android:id="@+id/etMonth"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="none"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAdd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Add Occasion"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/etNameLayout"
+                app:layout_constraintStart_toStartOf="@id/etNameLayout"
+                app:layout_constraintTop_toBottomOf="@+id/etNameLayout"
+                app:layout_constraintVertical_bias="1"
+                app:cornerRadius="100dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

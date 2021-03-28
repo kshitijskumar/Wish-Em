@@ -13,6 +13,8 @@ class FeaturesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityFeaturesBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setupViews()
     }
 
     private fun setupViews() {

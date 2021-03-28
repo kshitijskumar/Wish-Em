@@ -5,5 +5,13 @@
     <fragment
         android:id="@+id/allEventsFragment"
         android:name="com.example.wishem.ui.allevents.AllEventsFragment"
-        android:label="AllEventsFragment" />
+        android:label="AllEventsFragment" >
+        <action
+            android:id="@+id/action_allEventsFragment_to_addEventFragment"
+            app:destination="@id/addEventFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEventFragment"
+        android:name="com.example.wishem.ui.addevent.AddEventFragment"
+        android:label="AddEventFragment" />
 </navigation>

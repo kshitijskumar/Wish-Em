@@ -9,6 +9,6 @@ object InjectorUtils {
     fun providesDatabase(context: Context) = OccasionDatabase.getOccasionDatabase(context)
 
     fun providesRepository(context: Context) = OccasionRepository(
-            providesDatabase(context)
+            providesDatabase(context).occasionDao()
     )
 }

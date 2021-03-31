@@ -9,6 +9,19 @@
         android:layout_height="match_parent"
         android:background="@color/black">
 
+        <TextView
+            android:id="@+id/tvTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't forget to"
+            android:textColor="@color/app_bar_teal"
+            style="@style/TextAppearance.MaterialComponents.Headline5"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toTopOf="@id/splashLottie"
+            app:layout_constraintStart_toStartOf="@id/splashLottie"
+            app:layout_constraintEnd_toEndOf="@id/splashLottie"
+            android:layout_marginBottom="8dp"/>
+
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/splashLottie"
             android:layout_width="0dp"
@@ -22,6 +35,20 @@
             app:lottie_loop="false"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintWidth_percent="0.5"/>
+
+        <TextView
+            android:id="@+id/tvBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wish'Em"
+            android:textColor="@color/app_bar_dark_teal"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            style="@style/TextAppearance.MaterialComponents.Headline4"
+            app:layout_constraintTop_toBottomOf="@id/splashLottie"
+            app:layout_constraintStart_toStartOf="@id/splashLottie"
+            app:layout_constraintEnd_toEndOf="@id/splashLottie"
+            android:layout_marginTop="10dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

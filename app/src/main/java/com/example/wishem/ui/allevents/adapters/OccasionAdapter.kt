@@ -1,6 +1,7 @@
 package com.example.wishem.ui.allevents.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -10,7 +11,7 @@ import com.example.wishem.databinding.HolderTodayOccasionsBinding
 import com.example.wishem.local.OccasionEntity
 
 class OccasionAdapter(
-        private val clickItem : (id: Int) -> Unit,
+        private val clickItem : (item: OccasionEntity, itemView: View) -> Unit,
         private val isToday: Boolean = true
 ) : ListAdapter<OccasionEntity, RecyclerView.ViewHolder>(diffUtil) {
 
@@ -54,7 +55,7 @@ class OccasionAdapter(
             binding.item = item
 
             binding.cvTodayOccasion.setOnClickListener {
-                clickItem(item.id)
+                clickItem(item, it)
             }
         }
     }
@@ -65,7 +66,7 @@ class OccasionAdapter(
             binding.item = item
 
             binding.llEvent.setOnClickListener {
-                clickItem(item.id)
+                clickItem(item, it)
             }
         }
     }

@@ -96,6 +96,11 @@ class OccasionViewModel(
         }
     }
 
+    fun deleteOccasion(occasion: OccasionEntity) = viewModelScope.launch {
+        repo.deleteOccasion(occasion)
+        updateOccasion()
+    }
+
     private fun setAddingError(errorMsg: String) {
         _addingResult.value = Result.Error(errorMsg)
         _addingResult.value = Result.Idle
@@ -111,12 +116,12 @@ class OccasionViewModel(
             updateOccasion()
         }
 
-        val workRequest = PeriodicWorkRequestBuilder<ReminderWorker>(15, TimeUnit.MINUTES)
+        val workRequest = PeriodicWorkRequestBuilder<ReminderWorker>(12, TimeUnit.HOURS)
                 .addTag(WORK_REQUEST_TAG)
                 .build()
 
         WorkManager.getInstance(application)
-                .enqueueUniquePeriodicWork(WORK_REQUEST_TAG, ExistingPeriodicWorkPolicy.REPLACE, workRequest)
+                .enqueueUniquePeriodicWork(WORK_REQUEST_TAG, ExistingPeriodicWorkPolicy.KEEP, workRequest)
     }
 
 

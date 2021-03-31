@@ -25,14 +25,16 @@
             tools:text="22/12"
             android:textAlignment="center"
             android:gravity="center"
-            android:maxEms="3"
             android:layout_gravity="center"
-            style="@style/TextAppearance.MaterialComponents.Headline5"
+            style="@style/TextAppearance.MaterialComponents.Body1"
             android:textStyle="bold"
             android:layout_marginEnd="4dp"
             android:layout_marginStart="8dp"
             android:background="@drawable/bg_all_event_date"
-            android:padding="8dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
             android:textColor="@color/white"/>
 
         <ImageView
@@ -45,10 +47,11 @@
             android:layout_gravity="center"/>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginStart="8dp">
+            android:layout_marginStart="8dp"
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/tvName"

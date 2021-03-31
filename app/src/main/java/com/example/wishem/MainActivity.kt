@@ -5,6 +5,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import androidx.core.content.ContextCompat
 import com.example.wishem.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -15,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        this.window.statusBarColor = ContextCompat.getColor(this, R.color.black)
 
         setupViews()
     }
@@ -26,6 +29,10 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onAnimationEnd(animation: Animator?) {
+                binding.apply {
+                    tvTop.visibility = View.GONE
+                    tvBottom.visibility = View.GONE
+                }
                 val intent = Intent(this@MainActivity, FeaturesActivity::class.java)
                 startActivity(intent)
                 finish()
